@@ -17,13 +17,13 @@ function onAddItemSubmit(e) {
 
   const newItem = itemInput.value;
 
-  // Validate Input
+  // Input Validation
   if (newItem === "") {
     alert("Please add an item");
     return;
   }
 
-  // Check for edit mode
+  // Edit mode
   if (isEditMode) {
     const itemToEdit = itemList.querySelector(".edit-mode");
 
@@ -41,7 +41,7 @@ function onAddItemSubmit(e) {
   // Create item DOM element
   addItemToDOM(newItem);
 
-  // Add item to local storage
+  // Adding item to local storage
   addItemToStorage(newItem);
 
   checkUI();
@@ -57,7 +57,7 @@ function addItemToDOM(item) {
   const button = createButton("remove-item btn-link text-red");
   li.appendChild(button);
 
-  // Add li to the DOM
+  // Adding li to the DOM
   itemList.appendChild(li);
 }
 
@@ -78,7 +78,7 @@ function createIcon(classes) {
 function addItemToStorage(item) {
   const itemsFromStorage = getItemsFromStorage();
 
-  // Add new item to array
+  // Adding new item to an array
   itemsFromStorage.push(item);
 
   // Convert to JSON string and set to local storage
@@ -124,7 +124,7 @@ function setItemToEdit(item) {
 }
 
 function removeItem(item) {
-  if (confirm("Are you sure?")) {
+  if (confirm("Are you sure you want to remove this item from the list?")) {
     // Remove item from DOM
     item.remove();
 
@@ -138,10 +138,10 @@ function removeItem(item) {
 function removeItemFromStorage(item) {
   let itemsFromStorage = getItemsFromStorage();
 
-  // Filter out item to be removed
+  // Filter out item
   itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
 
-  // Re-set to localstorage
+  // Re-set to local storage
   localStorage.setItem("items", JSON.stringify(itemsFromStorage));
 }
 
@@ -150,7 +150,7 @@ function clearItems() {
     itemList.removeChild(itemList.firstChild);
   }
 
-  // Clear from localStorage
+  // Clear item from local storage
   localStorage.removeItem("items");
 
   checkUI();
